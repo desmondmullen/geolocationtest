@@ -69,14 +69,9 @@
 
             if (theDifferenceLatitude > .0002 || theDifferenceLongitude > .0002) {
                 timestamp = new Date().toUTCString()
-                document.getElementById("display").append(`
-                ${timestamp} Latitude: ${position.coords.latitude} Longitude: ${position.coords.longitude}
-
-                 Latitude difference: ${theDifferenceLatitude}, Longitude difference: ${theDifferenceLongitude}`);
+                document.getElementById("display").innerHTML += (`<br>${timestamp} Latitude: ${position.coords.latitude} Longitude: ${position.coords.longitude}<br>Latitude difference: ${theDifferenceLatitude}, Longitude difference: ${theDifferenceLongitude}`);
             } else {
-                document.getElementById("display").append(`
-                slight movement
-                `);
+                document.getElementById("display").innerHTML += (`<br>slight movement`);
             }
         }
     </script>
