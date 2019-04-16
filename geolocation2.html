@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>location checker</title>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <!-- <button id='btnIncrease'>Click Counter</button> -->
+    <button id='btn-position'>Get Position</button>
+    <div id='display'></div>
+    <div id='mapholder'></div>
+    <hr>
+
+    <script>
+        //--------------------------------
+        navigator.geolocation.watchPosition(showPosition);
+
+        var x = document.getElementById("display");
+
+        getLocation(x);
+
+        $('#btn-position').click(function() {
+            getLocation(x);
+        });
+
+        // setInterval(function() {
+        //     getLocation(x);
+        // }, 60000);
+
+        function getLocation(x) {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                document.getElementById("display").innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    document.getElementById("display").innerHTML = "User denied the request for Geolocation."
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    document.getElementById("display").innerHTML = "Location information is unavailable."
+                    break;
+                case error.TIMEOUT:
+                    document.getElementById("display").innerHTML = "The request to get user location timed out."
+                    break;
+                case error.UNKNOWN_ERROR:
+                    document.getElementById("display").innerHTML = "An unknown error occurred."
+                    break;
+            }
+        }
+
+        function showPosition(position) {
+            var d = new Date();
+            var n = d.getTime();
+            document.getElementById("display").append(n + " Latitude: " + position.coords.latitude +
+                " Longitude: " + position.coords.longitude + `
+                `);
+        }
+    </script>
+
+</body>
+
+</html>
