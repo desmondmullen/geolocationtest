@@ -62,14 +62,22 @@
         }
 
         function showPosition(position) {
-            theDifferenceLatitude = position.coords.latitude - theLastLatitude;
-            theDifferenceLongitude = position.coords.longitude - theLastLongitude;
+            theDifferenceLatitude = Math.abs(position.coords.latitude - theLastLatitude);
+            theDifferenceLongitude = Math.abs(position.coords.longitude - theLastLongitude);
             theLastLatitude = position.coords.latitude;
             theLastLongitude = position.coords.longitude;
 
-            timestamp = new Date().toUTCString()
-            document.getElementById("display").append(`${timestamp} Latitude: ${position.coords.latitude} Longitude: ${position.coords.longitude}
+            if (theDifferenceLatitude > .0002 || theDifferenceLongitude > .0002) {
+                timestamp = new Date().toUTCString()
+                document.getElementById("display").append(`
+                ${timestamp} Latitude: ${position.coords.latitude} Longitude: ${position.coords.longitude}
+
                  Latitude difference: ${theDifferenceLatitude}, Longitude difference: ${theDifferenceLongitude}`);
+            } else {
+                document.getElementById("display").append(`
+                slight movement
+                `);
+            }
         }
     </script>
 
