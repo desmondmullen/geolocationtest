@@ -67,7 +67,8 @@
             theLastLatitude = position.coords.latitude;
             theLastLongitude = position.coords.longitude;
 
-            if (theDifferenceLatitude > .0002 || theDifferenceLongitude > .0002) {
+            if (theDifferenceLatitude > .0001 || theDifferenceLongitude > .0001) { //~50 feet
+                // if (theDifferenceLatitude > .0002 || theDifferenceLongitude > .0002) { //~100 feet
                 timestamp = new Date().toUTCString()
                 document.getElementById("display").innerHTML += (`<br>${timestamp} Latitude: ${position.coords.latitude} Longitude: ${position.coords.longitude}<br>Latitude difference: ${theDifferenceLatitude}, Longitude difference: ${theDifferenceLongitude}`);
             } else {
