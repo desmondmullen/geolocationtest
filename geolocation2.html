@@ -64,11 +64,12 @@
         function showPosition(position) {
             theDifferenceLatitude = (Math.abs(position.coords.latitude - theLastLatitude)).toFixed(6);
             theDifferenceLongitude = (Math.abs(position.coords.longitude - theLastLongitude)).toFixed(6);
-            theLastLatitude = position.coords.latitude.toFixed(6);
-            theLastLongitude = position.coords.longitude.toFixed(6);
 
             if (theDifferenceLatitude > .0001 || theDifferenceLongitude > .0001) { //~50 feet
                 // if (theDifferenceLatitude > .0002 || theDifferenceLongitude > .0002) { //~100 feet
+                theLastLatitude = position.coords.latitude.toFixed(6);
+                theLastLongitude = position.coords.longitude.toFixed(6);
+
                 timestamp = new Date().toUTCString()
                 document.getElementById("display").innerHTML += (`<br>${timestamp} Latitude: ${position.coords.latitude.toFixed(6)} Longitude: ${position.coords.longitude.toFixed(6)}<br>Latitude difference: ${theDifferenceLatitude}, Longitude difference: ${theDifferenceLongitude}`);
             } else {
